@@ -22,6 +22,8 @@ def main():
     prcomp_df = pd.DataFrame(data=prcomp, columns=['PC1', 'PC2'])
     combined_df = pd.concat([prcomp_df, df[target]], axis=1)
     components = pca.components_
+    print("Explained variances:")
+    print(pca.explained_variance_ratio_)
 
     fig, ax = plt.subplots()
     fig.set_size_inches(13, 10)
@@ -36,15 +38,11 @@ def main():
     cbar = plt.colorbar()
     cbar.set_label('Mood')
 
-    print(combined_df)
-
     # Plotting the vectors corresponding to the old features
     V = components.T
 
     for i in range(len(V)):
         V[i] = V[i] / np.linalg.norm(V[i])
-
-    print(V)
 
     origin = np.array([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]])  # origin point
 
