@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import normalize
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -15,8 +14,6 @@ def main():
 
     df = pd.read_csv("mock.csv")
     x = df.loc[:, features].values
-    y = df.loc[:, target].values
-
     x = StandardScaler().fit_transform(x)  # mean 0 and variance 1
 
     # PCA
@@ -35,15 +32,13 @@ def main():
 
     colors = combined_df['mood'].tolist()
 
-    plt.scatter(combined_df['PC1'], combined_df['PC2'], c=colors, cmap='plasma_r')
+    plt.scatter(combined_df['PC1'], combined_df['PC2'], c=colors, cmap='plasma_r', s=80)
     cbar = plt.colorbar()
     cbar.set_label('Mood')
 
     print(combined_df)
-    print(type(components))
 
     # Plotting the vectors corresponding to the old features
-
     V = components.T
 
     for i in range(len(V)):
@@ -53,7 +48,14 @@ def main():
 
     origin = np.array([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]])  # origin point
 
-    plt.quiver(*origin, V[:, 0], V[:, 1], color=['k'], scale=1, scale_units='xy')
+    plt.quiver(*origin, V[:, 0], V[:, 1], color=['k'], scale=1, scale_units='xy', width=0.003)
+
+    xs = V[:, 0]
+    ys = V[:, 1]
+
+    for i, (x, y) in enumerate(zip(xs, ys)):
+        label = features[i]
+        plt.annotate(label, (x, y), textcoords="offset points", xytext=(0, 1), ha='center')
 
     plt.show()
     plt.savefig("plot.png")
