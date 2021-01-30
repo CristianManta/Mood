@@ -57,7 +57,6 @@ def main():
         label = features[i]
         plt.annotate(label, (x, y), textcoords="offset points", xytext=(0, 1), ha='center')
 
-    # plt.show()
     plt.savefig("plot.png")
 
 
