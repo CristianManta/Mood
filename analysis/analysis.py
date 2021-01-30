@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import normalize
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -23,22 +24,38 @@ def main():
     prcomp = pca.fit_transform(x)
     prcomp_df = pd.DataFrame(data=prcomp, columns=['PC1', 'PC2'])
     combined_df = pd.concat([prcomp_df, df[target]], axis=1)
+    components = pca.components_
 
-    fig = plt.figure(figsize=(8, 8))
-    ax = fig.add_subplot(1, 1, 1)
+    fig, ax = plt.subplots()
+    fig.set_size_inches(13, 10)
+
     ax.set_xlabel('PC1', fontsize=15)
     ax.set_ylabel('PC2', fontsize=15)
     ax.set_title('2D projection summary', fontsize=20)
-    targets = np.arange(11)
-    # colors = [[1,2,3], [4,5,6]]
-    for target in targets:
-        indicesToKeep = combined_df['mood'] == target
-        ax.scatter(combined_df.loc[indicesToKeep, 'PC1']
-                   , combined_df.loc[indicesToKeep, 'PC2']
-                   , c=None
-                   , s=50)
-    ax.legend(targets)
-    ax.grid()
+
+    colors = combined_df['mood'].tolist()
+
+    plt.scatter(combined_df['PC1'], combined_df['PC2'], c=colors, cmap='plasma_r')
+    cbar = plt.colorbar()
+    cbar.set_label('Mood')
+
+    print(combined_df)
+    print(type(components))
+
+    # Plotting the vectors corresponding to the old features
+
+    V = components.T
+
+    for i in range(len(V)):
+        V[i] = V[i] / np.linalg.norm(V[i])
+
+    print(V)
+
+    origin = np.array([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]])  # origin point
+
+    plt.quiver(*origin, V[:, 0], V[:, 1], color=['k'], scale=1, scale_units='xy')
+
+    plt.show()
     plt.savefig("plot.png")
 
 
