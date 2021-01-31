@@ -1,7 +1,7 @@
 # Mood
 A data analysis project consisting of a Python script that maps data consisting of 5 features to a 2 dimensional subspace using PCA (principal component analysis) to determine which directions explain the most varibility in the data. 
 
-The script then colors the projected data according to the response variable, the mood rating (0 - 10), and adds vectors associated to an increase in each original feature. The goal is to read data that a person produced through a form over a period of a few weeks and to try to determine the most important factors that influence the mood.
+The script then colors the projected data according to the response variable, the mood rating (0 - 10), and adds vectors associated to an increase in each original feature. The goal is to read data that a person produced through a form over a period of a few weeks and to visualize the most important factors that influence the mood.
 
 The 5 features are:
 
