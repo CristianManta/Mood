@@ -5,9 +5,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-# df = pd.read_sql_table('table_name', 'postgres:///db_name')
-
-
 def main():
     features = ['sleep quality', 'social interaction', 'exercise', 'goals satisfaction', 'stress']
     target = ['mood']
@@ -38,13 +35,13 @@ def main():
     cbar = plt.colorbar()
     cbar.set_label('Mood')
 
-    # Plotting the vectors corresponding to the old features
+    # Plotting the vectors corresponding to the original features
     V = components.T
 
     for i in range(len(V)):
         V[i] = V[i] / np.linalg.norm(V[i])
 
-    origin = np.array([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]])  # origin point
+    origin = np.array([[0, 0, 0, 0, 0], [0, 0, 0, 0, 0]])
 
     plt.quiver(*origin, V[:, 0], V[:, 1], color=['k'], scale=1, scale_units='xy', width=0.003)
 
