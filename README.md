@@ -4,4 +4,6 @@ A data analysis project consisting of an analysis script that maps data consisti
 The script then colors the projected data according to the response variable, the mood rating, and adds vectors associated to an increase in each old feature. The goal is to read questionnaire data from a person over a period of a few weeks and to try to determine the most important factors that influence the mood.
 
 ## Screenshot
+I generated fake data with 8 entries where the person's mood would mostly be improved by better sleep quality and exercise time, and worsened by a sense of goals satisfaction (I know, totally unrealistic, but I wanted to test the contrast), and where stress and social interaction have little impact. This is the resulting plot. The data can be found here: [mock.csv](/analysis/mock.csv).
+
 ![example](/analysis/plot.png)
