@@ -11,7 +11,7 @@ The 5 features are:
 * Satisfaction with daily goals (0 - 10) --> gs
 * Stress levels rating (0 - 10) --> s
 
-## Screenshot
+## Illustration
 I generated fake data with 8 entries where the person's mood would mostly be improved by better sleep quality and exercise time, and worsened by a sense of goals satisfaction (I know, totally unrealistic, but I wanted to test the contrast), and where stress and social interaction have little impact. This is the resulting plot. The data can be found here: [mock.csv](/analysis/mock.csv).
 
 ![example](/analysis/plot.png)

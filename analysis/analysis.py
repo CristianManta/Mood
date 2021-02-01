@@ -30,8 +30,8 @@ def main():
 
     ax.set_xlabel('PC1', fontsize=15)
     ax.set_ylabel('PC2', fontsize=15)
-    title = '2D projection Summary.' + '\n' + 'Total Explained Variance: ' + \
-            "{:.0f}".format(total_variance_percentage) + ' %'
+    title = '2D projection Summary.' + '\n' + 'Explained Variance: ' + \
+            "{:.0f}".format(total_variance_percentage) + ' % from Total.'
     ax.set_title(title, fontsize=20)
 
     colors = combined_df['mood'].tolist()
