@@ -22,8 +22,6 @@ def main():
     components = pca.components_
     variance_ratios_list = pca.explained_variance_ratio_
     total_variance_percentage = sum(variance_ratios_list) * 100
-    print("Explained variances:")
-    print(variance_ratios_list)
 
     fig, ax = plt.subplots()
     fig.set_size_inches(13, 10)
