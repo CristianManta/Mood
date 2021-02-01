@@ -8,6 +8,7 @@ import numpy as np
 def main():
     features = ['sleep quality', 'social interaction', 'exercise', 'goals satisfaction', 'stress']
     target = ['mood']
+    features_abbrev = {'sleep quality': 'sq','social interaction': 'si','exercise': 'e','goals satisfaction': 'gs','stress': 's'}
 
     df = pd.read_csv("mock.csv")
     x = df.loc[:, features].values
@@ -19,15 +20,19 @@ def main():
     prcomp_df = pd.DataFrame(data=prcomp, columns=['PC1', 'PC2'])
     combined_df = pd.concat([prcomp_df, df[target]], axis=1)
     components = pca.components_
+    variance_ratios_list = pca.explained_variance_ratio_
+    total_variance_percentage = sum(variance_ratios_list) * 100
     print("Explained variances:")
-    print(pca.explained_variance_ratio_)
+    print(variance_ratios_list)
 
     fig, ax = plt.subplots()
     fig.set_size_inches(13, 10)
 
     ax.set_xlabel('PC1', fontsize=15)
     ax.set_ylabel('PC2', fontsize=15)
-    ax.set_title('2D projection summary', fontsize=20)
+    title = '2D projection Summary.' + '\n' + 'Total Explained Variance: ' + \
+            "{:.0f}".format(total_variance_percentage) + ' %'
+    ax.set_title(title, fontsize=20)
 
     colors = combined_df['mood'].tolist()
 
@@ -49,8 +54,8 @@ def main():
     ys = V[:, 1]
 
     for i, (x, y) in enumerate(zip(xs, ys)):
-        label = features[i]
-        plt.annotate(label, (x, y), textcoords="offset points", xytext=(0, 1), ha='center')
+        label = features_abbrev[features[i]]
+        plt.annotate(label, (x, y), textcoords="offset points", xytext=(5 * x, 5 * y), ha='center')
 
     plt.savefig("plot.png")
 
