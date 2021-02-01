@@ -5,11 +5,11 @@ The script then colors the projected data according to the response variable, th
 
 The 5 features are:
 
-* Sleep quality rating from the night before (0 - 10)
-* Time spent interacting socially (hours)
-* Time spent exercising (hours)
-* Satisfaction with daily goals (0 - 10)
-* Stress levels rating (0 - 10)
+* Sleep quality rating from the night before (0 - 10) --> sq
+* Time spent interacting socially (hours) --> si
+* Time spent exercising (hours) --> e
+* Satisfaction with daily goals (0 - 10) --> gs
+* Stress levels rating (0 - 10) --> s
 
 ## Screenshot
 I generated fake data with 8 entries where the person's mood would mostly be improved by better sleep quality and exercise time, and worsened by a sense of goals satisfaction (I know, totally unrealistic, but I wanted to test the contrast), and where stress and social interaction have little impact. This is the resulting plot. The data can be found here: [mock.csv](/analysis/mock.csv).
